@@ -4,19 +4,19 @@ Summary:	Clone of the game AtomicBomberMan
 Summary(pl):	Klon gry AtomicBomberMan
 Name:		bomberclone
 Version:	0.11.2
-Release:	0.2
+Release:	1
 License:	GPL v2
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	4ba700b22bf704b15a4e8db38054e1d0
 Source1:	http://dl.sourceforge.net/%{name}/%{_mserv}.tgz
 # Source1-md5:	40bbe14055010e7fcf11c6bfd4e4c006
-#Source2:	%{name}.desktop
+Source2:	%{name}.desktop
 Patch0:		%{name}mserv-include.patch
 URL:		http://www.bomberclone.de/
 BuildRequires:	SDL-devel >= 1.2
 BuildRequires:	SDL_image-devel >= 1.2
-BuildRequires:	SDL_mixer >= 1.2
+BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -64,12 +64,18 @@ cd %{_mserv}
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/games}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{_mserv}/src/bomberclonemserv \
 	$RPM_BUILD_ROOT%{_bindir}
+
+cp -f $RPM_BUILD_ROOT%{_datadir}/games/%{name}/gfx/logo.png \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -79,7 +85,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/games/%{name}
+%{_desktopdir}/*.desktop
 %{_includedir}/%{name}
+%{_pixmapsdir}/*
 
 %files master_server
 %defattr(644,root,root,755)
