@@ -1,5 +1,5 @@
-%define _serv_ver	0.2.2
-%define	_mserv	bomberclonemserv-%{_serv_ver}
+%define		_serv_ver	0.2.2
+%define		_mserv	bomberclonemserv-%{_serv_ver}
 Summary:	Clone of the game AtomicBomberMan
 Summary(pl):	Klon gry AtomicBomberMan
 Name:		bomberclone
@@ -14,12 +14,10 @@ Source1:	http://dl.sourceforge.net/%{name}/%{_mserv}.tgz
 Source2:	%{name}.desktop
 Patch0:		%{name}mserv-include.patch
 URL:		http://www.bomberclone.de/
-BuildRequires:	automake
-BuildRequires:	SDL-devel >= 1.2
-BuildRequires:	SDL_image-devel >= 1.2
-BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	SDL_image-devel >= 1.2
+BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
