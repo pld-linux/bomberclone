@@ -1,0 +1,13 @@
+--- bomberclonemserv-0.2.2/src/bcmserv.h.orig	2004-02-08 11:44:45.000000000 +0100
++++ bomberclonemserv-0.2.2/src/bcmserv.h	2004-02-08 11:45:12.000000000 +0100
+@@ -22,8 +22,8 @@
+ #include <sys/types.h>
+ #include <time.h>
+ #include <string>
+-#include <fstream>
+-#include <iostream>
++#include <fstream.h>
++#include <iostream.h>
+ 
+ #ifdef _WIN32
+ #include <winsock.h>
