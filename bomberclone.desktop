@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Bomberclone
+Comment=Clone of the game AtomicBomberMan
+Comment[pl]=Klon gry AtomicBomberMan
+Icon=bomberclone.png
+Exec=bomberclone
+Terminal=false
+Type=Application
+Categories=Application;Game;
+Encoding=UTF-8
+# vi: encoding=utf-8
