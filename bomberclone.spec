@@ -4,7 +4,7 @@ Summary:	Clone of the game AtomicBomberMan
 Summary(pl):	Klon gry AtomicBomberMan
 Name:		bomberclone
 Version:	0.11.2
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
@@ -14,6 +14,7 @@ Source1:	http://dl.sourceforge.net/%{name}/%{_mserv}.tgz
 Source2:	%{name}.desktop
 Patch0:		%{name}mserv-include.patch
 URL:		http://www.bomberclone.de/
+BuildRequires:	automake
 BuildRequires:	SDL-devel >= 1.2
 BuildRequires:	SDL_image-devel >= 1.2
 BuildRequires:	SDL_mixer-devel >= 1.2
@@ -50,6 +51,7 @@ cd %{_mserv}
 %patch0 -p1
 
 %build
+cp -f /usr/share/automake/config.sub .
 %configure
 %{__make}
 
