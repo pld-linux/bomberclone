@@ -1,0 +1,39 @@
+# Fix remote buffer overflow vulnerability if an excessive remote error is sent
+# and processed due to the text buffer overflowing.
+
+# Discovery: Stefan Cornelius <dercorny@gentoo.org> of Gentoo Security
+# Patch: Tim Yamin <plasmaroo@gentoo.org> of Gentoo Auditing
+
+diff -ur bomberclone-0.11.6.2/src/menu.c bomberclone-0.11.6.2.plasmaroo/src/menu.c
+--- bomberclone-0.11.6.2/src/menu.c	2005-03-27 02:31:50.000000000 +0100
++++ bomberclone-0.11.6.2.plasmaroo/src/menu.c	2006-02-04 23:51:04.000000000 +0000
+@@ -629,7 +629,7 @@
+     memset (text, 0, sizeof (text));
+     memset (out, 0, sizeof (out));
+     va_start (args, fmt);
+-    vsprintf (text, fmt, args);
++    vsnprintf (text, 512, fmt, args);
+     va_end (args);
+ 
+     menu_formattext (text, out, lines, &linenr, &maxlinelen, MENU_MESSAGES_MAXLINELEN,
+@@ -722,7 +724,7 @@
+     memset (text, 0, sizeof (text));
+     memset (out, 0, sizeof (out));
+     va_start (args, fmt);
+-    vsprintf (text, fmt, args);
++    vsnprintf (text, 512, fmt, args);
+     va_end (args);
+ 
+     menu_formattext (text, out, lines, &linenr, &maxlinelen, MENU_MESSAGES_MAXLINELEN,
+diff -ur bomberclone-0.11.6.2/src/menulabels.c bomberclone-0.11.6.2.plasmaroo/src/menulabels.c
+--- bomberclone-0.11.6.2/src/menulabels.c	2004-09-12 17:49:48.000000000 +0100
++++ bomberclone-0.11.6.2.plasmaroo/src/menulabels.c	2006-02-04 23:47:24.000000000 +0000
+@@ -72,7 +72,7 @@
+ 	memset (text, 0, sizeof (text));
+ 	memset (out, 0, sizeof (out));
+ 	va_start (args, fmt);
+-	vsprintf (text, fmt, args);
++	vsnprintf (text, 1024, fmt, args);
+ 	va_end (args);
+ 
+ 	menu_formattext (text, out, lineptr, &linecnt, &maxchar, maxlen, maxlines);
