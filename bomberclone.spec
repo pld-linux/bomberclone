@@ -3,17 +3,16 @@
 Summary:	Clone of the game AtomicBomberMan
 Summary(pl):	Klon gry AtomicBomberMan
 Name:		bomberclone
-Version:	0.11.6
-Release:	2
-License:	GPL v2
+Version:	0.11.7
+Release:	1
+License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/bomberclone/%{name}-%{version}.tar.bz2
-# Source0-md5:	9d5febdaa71ecac525cc4ff4b54d0d58
+# Source0-md5:	98bc04fab8eb556a75f513918c55e81e
 Source1:	http://dl.sourceforge.net/bomberclone/%{_mserv}.tgz
 # Source1-md5:	40bbe14055010e7fcf11c6bfd4e4c006
 Source2:	%{name}.desktop
-Patch0:		%{name}-fix-kaboom.patch
-Patch1:		%{name}mserv-include.patch
+Patch0:		%{name}mserv-include.patch
 URL:		http://www.bomberclone.de/
 BuildRequires:	SDL_image-devel >= 1.2
 BuildRequires:	SDL_mixer-devel >= 1.2
@@ -46,9 +45,8 @@ do tocz±cej siê gry poprzez wskazanie jej w menu.
 
 %prep
 %setup -q -a1
-%patch0 -p1
 cd %{_mserv}
-%patch1 -p1
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -84,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README TODO
+%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/games/%{name}
 %{_desktopdir}/*.desktop
