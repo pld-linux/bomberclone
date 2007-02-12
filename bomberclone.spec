@@ -1,7 +1,7 @@
 %define		_serv_ver	0.2.2
 %define		_mserv	bomberclonemserv-%{_serv_ver}
 Summary:	Clone of the game AtomicBomberMan
-Summary(pl.UTF-8):   Klon gry AtomicBomberMan
+Summary(pl.UTF-8):	Klon gry AtomicBomberMan
 Name:		bomberclone
 Version:	0.11.7
 Release:	1
@@ -30,7 +30,7 @@ Internecie.
 
 %package master_server
 Summary:	Master server for BomberClone
-Summary(pl.UTF-8):   Główny serwer dla BomberClone'a
+Summary(pl.UTF-8):	Główny serwer dla BomberClone'a
 Group:		X11/Applications/Games
 
 %description master_server
