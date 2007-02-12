@@ -1,7 +1,7 @@
 %define		_serv_ver	0.2.2
 %define		_mserv	bomberclonemserv-%{_serv_ver}
 Summary:	Clone of the game AtomicBomberMan
-Summary(pl):	Klon gry AtomicBomberMan
+Summary(pl.UTF-8):   Klon gry AtomicBomberMan
 Name:		bomberclone
 Version:	0.11.7
 Release:	1
@@ -24,13 +24,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Clone of the game AtomicBomberMan. It supports multiplayer over the
 Internet.
 
-%description -l pl
-Klon gry AtomicBomberMan wspieraj±cy grê z kilkoma graczami w
+%description -l pl.UTF-8
+Klon gry AtomicBomberMan wspierajÄ…cy grÄ™ z kilkoma graczami w
 Internecie.
 
 %package master_server
 Summary:	Master server for BomberClone
-Summary(pl):	G³ówny serwer dla BomberClone'a
+Summary(pl.UTF-8):   GÅ‚Ã³wny serwer dla BomberClone'a
 Group:		X11/Applications/Games
 
 %description master_server
@@ -38,10 +38,10 @@ The BomberCloneMasterServer holds a list of all active running games.
 Other players can so easy join a running game by selecting the game
 from join menu.
 
-%description master_server -l pl
-BomberCloneMasterServer jest g³ównym serwerem, który przechowuje
-wszystkie aktywne gry. Inni gracze mog± w prosty sposób przy³±czyæ siê
-do tocz±cej siê gry poprzez wskazanie jej w menu.
+%description master_server -l pl.UTF-8
+BomberCloneMasterServer jest gÅ‚Ã³wnym serwerem, ktÃ³ry przechowuje
+wszystkie aktywne gry. Inni gracze mogÄ… w prosty sposÃ³b przyÅ‚Ä…czyÄ‡ siÄ™
+do toczÄ…cej siÄ™ gry poprzez wskazanie jej w menu.
 
 %prep
 %setup -q -a1
