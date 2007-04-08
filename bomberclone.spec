@@ -63,8 +63,7 @@ cd %{_mserv}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/games}
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/games,%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -76,6 +75,9 @@ cp -f $RPM_BUILD_ROOT%{_datadir}/games/%{name}/gfx/logo.png \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+
+rm -rf $RPM_BUILD_ROOT/usr/doc/bomberclone \
+	$RPM_BUILD_ROOT/usr/doc/bomberclonemserv
 
 %clean
 rm -rf $RPM_BUILD_ROOT
