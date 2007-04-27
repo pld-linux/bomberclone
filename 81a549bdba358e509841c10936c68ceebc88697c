@@ -1,0 +1,4 @@
+- 0.11.7
+- bombercolne-fix-kaboom.patch removed
+- cosmetics
+[fixes CVE-2006-4005 CVE-2006-4006]
