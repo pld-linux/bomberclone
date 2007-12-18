@@ -3,12 +3,12 @@
 Summary:	Clone of the game AtomicBomberMan
 Summary(pl.UTF-8):	Klon gry AtomicBomberMan
 Name:		bomberclone
-Version:	0.11.7
+Version:	0.11.8
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://dl.sourceforge.net/bomberclone/%{name}-%{version}.tar.bz2
-# Source0-md5:	98bc04fab8eb556a75f513918c55e81e
+# Source0-md5:	1dedd642120eee8911b12e2ee05e476f
 Source1:	http://dl.sourceforge.net/bomberclone/%{_mserv}.tgz
 # Source1-md5:	40bbe14055010e7fcf11c6bfd4e4c006
 Source2:	%{name}.desktop
@@ -84,12 +84,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README
+%doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/games/%{name}
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
 
 %files master_server
+%doc README
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/bomberclonemserv
