@@ -18,6 +18,7 @@ BuildRequires:	SDL_image-devel >= 1.2
 BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
