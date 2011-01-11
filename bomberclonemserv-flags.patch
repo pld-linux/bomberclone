@@ -1,0 +1,18 @@
+--- src/Makefile.am~	2003-04-23 17:43:40.000000000 +0200
++++ src/Makefile.am	2011-01-11 15:32:45.289764768 +0100
+@@ -8,13 +8,11 @@
+ 
+ CFLAGS =\
+ 	 -Wall -Wimplicit -Wreturn-type -Wunused -Wswitch -Wcomment -Wuninitialized -Wparentheses -Wtraditional -Wpointer-arith -Wmissing-prototypes\
+-	 -O1\
+-	 -g
++	 -g $(OPTFLAGS)
+ 
+ CXXFLAGS =\
+ 	 -Wall -Wimplicit -Wreturn-type -Wunused -Wswitch -Wcomment -Wuninitialized -Wparentheses -Wtraditional -Wpointer-arith -Wmissing-prototypes\
+-	 -O1\
+-	 -g
++	 -g $(OPTFLAGS)
+ 
+ bin_PROGRAMS = bomberclonemserv
+ 
