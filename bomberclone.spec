@@ -17,6 +17,7 @@ Source1:	http://downloads.sourceforge.net/bomberclone/%{_mserv}.tgz
 Source2:	%{name}.desktop
 Patch0:		%{name}-link.patch
 Patch1:		%{name}mserv-include.patch
+Patch2:		%{name}mserv-flags.patch
 URL:		http://www.bomberclone.de/
 BuildRequires:	SDL_image-devel >= 1.2
 BuildRequires:	SDL_mixer-devel >= 1.2
@@ -53,10 +54,15 @@ do toczącej się gry poprzez wskazanie jej w menu.
 %patch0 -p1
 cd %{_mserv}
 %patch1 -p1
-
+%patch2 -p0
 
 %build
-%configure
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+%configure \
+	--disable-debug
 %{__make}
 
 cd %{_mserv}
@@ -65,7 +71,8 @@ cd %{_mserv}
 %{__autoheader}
 %{__automake}
 %configure
-%{__make}
+%{__make} \
+	OPTFLAGS="%{rpmcxxflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
