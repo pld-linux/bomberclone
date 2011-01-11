@@ -1,0 +1,10 @@
+--- bomberclone-0.11.9/configure.in~	2010-12-11 23:04:32.000000000 +0100
++++ bomberclone-0.11.9/configure.in	2011-01-11 14:22:33.189643734 +0100
+@@ -119,6 +119,7 @@
+ 	fi
+ fi
+ 
++LIBS="$LIBS -lm"
+ 
+ 
+ dnl Checks for library functions.
