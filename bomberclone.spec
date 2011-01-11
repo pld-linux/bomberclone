@@ -1,18 +1,22 @@
+#
+# TODO: check if server still works
+#
 %define		_serv_ver	0.2.2
 %define		_mserv	bomberclonemserv-%{_serv_ver}
 Summary:	Clone of the game AtomicBomberMan
 Summary(pl.UTF-8):	Klon gry AtomicBomberMan
 Name:		bomberclone
-Version:	0.11.8
+Version:	0.11.9
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games
-Source0:	http://dl.sourceforge.net/bomberclone/%{name}-%{version}.tar.bz2
-# Source0-md5:	1dedd642120eee8911b12e2ee05e476f
-Source1:	http://dl.sourceforge.net/bomberclone/%{_mserv}.tgz
+Source0:	http://downloads.sourceforge.net/bomberclone/%{name}-%{version}.tar.gz
+# Source0-md5:	3edcfcf69b88dbd2eab42541f236e072
+Source1:	http://downloads.sourceforge.net/bomberclone/%{_mserv}.tgz
 # Source1-md5:	40bbe14055010e7fcf11c6bfd4e4c006
 Source2:	%{name}.desktop
-Patch0:		%{name}mserv-include.patch
+Patch0:		%{name}-link.patch
+Patch1:		%{name}mserv-include.patch
 URL:		http://www.bomberclone.de/
 BuildRequires:	SDL_image-devel >= 1.2
 BuildRequires:	SDL_mixer-devel >= 1.2
@@ -46,11 +50,12 @@ do toczącej się gry poprzez wskazanie jej w menu.
 
 %prep
 %setup -q -a1
-cd %{_mserv}
 %patch0 -p1
+cd %{_mserv}
+%patch1 -p1
+
 
 %build
-cp -f /usr/share/automake/config.sub .
 %configure
 %{__make}
 
@@ -72,13 +77,12 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/games,%{_desktopdir},%{_pixmap
 %{__make} -C %{_mserv} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -f $RPM_BUILD_ROOT%{_datadir}/games/%{name}/gfx/logo.png \
+cp -a $RPM_BUILD_ROOT%{_datadir}/games/%{name}/gfx/logo.png \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/%{name}.png
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 
-rm -rf $RPM_BUILD_ROOT/usr/doc/bomberclone \
-	$RPM_BUILD_ROOT/usr/doc/bomberclonemserv
+%{__rm} -r $RPM_BUILD_ROOT%{_prefix}/doc/bomberclonemserv
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,10 +92,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/games/%{name}
-%{_desktopdir}/*.desktop
-%{_pixmapsdir}/*
+%{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{name}.png
 
 %files master_server
+%defattr(644,root,root,755)
 %doc README
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/bomberclonemserv
