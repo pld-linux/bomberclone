@@ -24,6 +24,7 @@ BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libstdc++-devel
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +53,8 @@ do toczącej się gry poprzez wskazanie jej w menu.
 %prep
 %setup -q -a1
 %patch0 -p1
+%{__sed} '/SDL_LIBS.*ljpeg/d' -i configure.in
+
 cd %{_mserv}
 %patch1 -p1
 %patch2 -p0
