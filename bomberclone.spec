@@ -52,12 +52,12 @@ do toczącej się gry poprzez wskazanie jej w menu.
 
 %prep
 %setup -q -a1
-%patch0 -p1
+%patch -P0 -p1
 %{__sed} '/SDL_LIBS.*ljpeg/d' -i configure.in
 
 cd %{_mserv}
-%patch1 -p1
-%patch2 -p0
+%patch -P1 -p1
+%patch -P2 -p0
 
 %build
 %{__aclocal}
