@@ -7,7 +7,7 @@ Summary:	Clone of the game AtomicBomberMan
 Summary(pl.UTF-8):	Klon gry AtomicBomberMan
 Name:		bomberclone
 Version:	0.11.9
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://downloads.sourceforge.net/bomberclone/%{name}-%{version}.tar.gz
@@ -18,6 +18,8 @@ Source2:	%{name}.desktop
 Patch0:		%{name}-link.patch
 Patch1:		%{name}mserv-include.patch
 Patch2:		%{name}mserv-flags.patch
+Patch3:		%{name}-prototypes.patch
+Patch4:		%{name}mserv-socklen.patch
 URL:		http://www.bomberclone.de/
 BuildRequires:	SDL_image-devel >= 1.2
 BuildRequires:	SDL_mixer-devel >= 1.2
@@ -53,11 +55,13 @@ do toczącej się gry poprzez wskazanie jej w menu.
 %prep
 %setup -q -a1
 %patch -P0 -p1
+%patch -P3 -p1
 %{__sed} '/SDL_LIBS.*ljpeg/d' -i configure.in
 
 cd %{_mserv}
 %patch -P1 -p1
 %patch -P2 -p0
+%patch -P4 -p1
 
 %build
 %{__aclocal}
@@ -65,7 +69,9 @@ cd %{_mserv}
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-debug
+	CFLAGS="%{rpmcppflags} %{rpmcflags} -std=gnu89" \
+	--disable-debug \
+	--disable-werror
 %{__make}
 
 cd %{_mserv}
@@ -73,9 +79,10 @@ cd %{_mserv}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	CPPFLAGS="%{rpmcppflags}"
 %{__make} \
-	OPTFLAGS="%{rpmcxxflags}"
+	OPTFLAGS="%{rpmcxxflags} %{rpmcppflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

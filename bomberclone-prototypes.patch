@@ -1,0 +1,17 @@
+Fix prototypes for game_showresult{normal,team} which are defined with four
+int arguments but declared with empty parens. With GCC's stricter C rules
+this becomes a hard error (conflicting types).
+
+--- bomberclone-0.11.9/include/bomberclone.h.orig	2010-12-11 23:04:32.000000000 +0100
++++ bomberclone-0.11.9/include/bomberclone.h	2026-05-20 13:36:31.306586748 +0200
+@@ -123,8 +123,8 @@
+ extern void game_start();
+ extern void game_showresult ();
+ extern int game_check_endgame ();
+-extern void game_showresultnormal ();
+-extern void game_showresultteam ();
++extern void game_showresultnormal (int pos_x, int pos_y, int pos_w, int pos_h);
++extern void game_showresultteam (int pos_x, int pos_y, int pos_w, int pos_h);
+ extern void game_menu_create ();
+ extern void game_menu_loop (SDL_Event *event, int eventstate);
+ extern void game_resetdata ();

@@ -1,0 +1,15 @@
+Use socklen_t (not size_t) for the third argument of accept(). Modern glibc
+declares socklen_t as unsigned int, so size_t no longer matches and GCC
+treats this as a hard error.
+
+--- bomberclonemserv-0.2.2/src/tcp.c.orig
++++ bomberclonemserv-0.2.2/src/tcp.c
+@@ -278,7 +278,7 @@
+
+ /* Linux Code of the tcp part */
+     struct sockaddr_in cAddr;
+-    size_t addrlen = sizeof (struct sockaddr_in);
++    socklen_t addrlen = sizeof (struct sockaddr_in);
+
+     sock = accept (tcpsocket, (struct sockaddr *) &cAddr, &addrlen);
+
